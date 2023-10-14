@@ -1,0 +1,31 @@
+{{!--
+
+-If the user is not authenticaed and hits the endpoint 'GET /', you will render this view with a login form.
+-The form will contain two inputs, one for username and one for password.
+-The form will be used to submit a POST request to the '/login' route on the server and must have an 'id' of 'login-form'.
+-The input for the username must have a 'name' and 'id' of 'usernameInput'.
+-The input for the password must have 'name' and 'id' of 'passwordInput' and should be an input 'type' of 'password'.
+-You will also have a link on this page that links to '/register' and has the text "Click here to register!"
+
+Do not forget to use labels for your inputs! For the labels, you will use the method of using the 'for' attribute.
+You should have a label for both the username and password inputs referencing their id's in the for attribute of the label.
+
+--}}
+<h1 style="font-family: 'Quicksand', sans-serif; font-size: 36px; color: #FF5733;">Login</h1>
+<form id="login-form" method="POST" action="/login">
+    <div>
+        <label for="usernameInput" style="font-family: 'Quicksand', sans-serif; font-size: 16px; color: #555; margin-bottom: 5px;">Username</label>
+        <input type="text" id="usernameInput" name="username" value="{{username}}" required="required" style="font-family: 'Quicksand', sans-serif; font-size: 16px; padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+    <div>
+        <label for="passwordInput" style="font-family: 'Quicksand', sans-serif; font-size: 16px; color: #555; margin-bottom: 5px;">Password</label>
+        <input type="password" id="passwordInput" name="password" value="{{password}}" required="required" style="font-family: 'Quicksand', sans-serif; font-size: 16px; padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+    <div>
+        <button type="submit" style="font-family: 'Quicksand', sans-serif; font-size: 18px; background-color: #FF5733; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Login</button>
+    </div>
+    {{#if error}}
+        <p style="font-family: 'Quicksand', sans-serif; font-size: 16px; color: red; margin-top: 10px;" id="error">{{error}}</p>
+    {{/if}}
+</form>
+<p style="font-family: 'Quicksand', sans-serif; font-size: 16px; font-weight: bold; color: #0077cc; margin-top: 20px;"><a href="/register" style="color: #0077cc; text-decoration: none;">Click here to register!</a></p>

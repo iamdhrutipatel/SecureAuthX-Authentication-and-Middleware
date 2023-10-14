@@ -1,0 +1,12 @@
+{{!--
+
+If the user is logged in, and 'GET /protected' endpoint is called, you will render this view that displays:
+-Username (which you stored in the session when they logged in) for the currently logged in user
+-The current date/time
+
+Also, you will need to have a hyperlink at the bottom of the page to /logout.
+
+--}}
+<h1 style="font-family: 'Quicksand', sans-serif; font-size: 36px; color: #FF5733;">Welcome, {{username}}!</h1>
+<p style="font-family: 'Quicksand', sans-serif; font-size: 18px; color: #555;">Current Date/Time: {{dateAndTime}}</p>
+<a href="/logout" style="font-family: 'Quicksand', sans-serif; font-size: 18px; text-decoration: none; color: #FF5733; font-weight: bold;">Logout</a>
