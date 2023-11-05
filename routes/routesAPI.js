@@ -30,20 +30,25 @@ router
     try {
       req.body.username = helpers.checkUserName(req.body.username);
       req.body.password = helpers.checkPassWord(req.body.password);
+      req.body.password2 = helpers.checkPassWord(req.body.password2);
 
-      const user = await userData.createUser(
-        req.body.username,
-        req.body.password
-      );
+      if (req.body.password === req.body.password2) {
+        const user = await userData.createUser(
+          req.body.username,
+          req.body.password
+        );
 
-      if (!user.insertedUser) throwNewError(500, "Internal Server Error");
+        if (!user.insertedUser) throwNewError(500, "Internal Server Error");
 
-      res.redirect("/");
+        res.redirect("/");
+      } else {
+        throwNewError(400, "Both Passwords Does Not Match!");
+      }
     } catch (error) {
       return res.status(error.code || 400).render("userRegister", {
         title: "SignUp",
         username: req.body.username,
-        password: req.body.password,
+        password1: req.body.password1,
         error: error.message || "Bad Request",
       });
     }
