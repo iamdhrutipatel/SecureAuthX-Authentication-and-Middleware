@@ -59,6 +59,37 @@ const checkUser = async (username, password) => {
   }
 };
 
+const forgetUser = async (username, password) => {
+  try {
+    let usernm = helpers.checkUserName(username);
+    let pwd = helpers.checkPassWord(password);
+
+    const userCollection = await user();
+
+    let findUserName = await userCollection.findOne({username: usernm});
+
+    if (!findUserName) {
+      throwNewError(400, "No User exists with this username!");
+    }
+
+    const saltRounds = 15;
+
+    const hash = await bcryptjs.hash(pwd, saltRounds);
+
+    const updatedInfo = await userCollection.updateOne(
+      {username: usernm},
+      {$set: {password: hash}}
+    );
+
+    if (updatedInfo.modifiedCount === 0)
+      throwNewError(500, "Could not update the user!");
+
+    return {updatedUser: true};
+  } catch (error) {
+    throw2Error(error);
+  }
+};
+
 const throwNewError = (code = 404, message = "Not found") => {
   throw {code, message};
 };
@@ -73,6 +104,7 @@ const throw2Error = (error) => {
 module.exports = {
   createUser,
   checkUser,
+  forgetUser,
   throwNewError,
   throw2Error,
 };
