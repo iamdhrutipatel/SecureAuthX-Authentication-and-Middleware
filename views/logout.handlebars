@@ -1,9 +1,11 @@
-{{!-- 
+{{! 
 
 This view will be shown when the 'GET /logout' endpoint is called and will:
 -Inform the user that they have been logged out
 -Provide a URL hyperlink to the / route
 
- --}}
-<h1 style="font-family: 'Quicksand', sans-serif; font-size: 36px; color: #FF5733;">Logged Out Successfully</h1>
-<a href="/" style="font-family: 'Quicksand', sans-serif; font-size: 18px; text-decoration: none; color: #FF5733; border: 2px solid #FF5733; padding: 10px 20px; border-radius: 8px; background-color: #fff; transition: background-color 0.3s, color 0.3s;">Go Back To Login Page</a>
+ }}
+<div class="message-container">
+  <h1 style="color: #FF5733;">Logged Out Successfully!</h1>
+  <a href="/logout" class="buttonn">Go Back To Login Page</a>
+</div>
